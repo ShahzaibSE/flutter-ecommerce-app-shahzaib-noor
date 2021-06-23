@@ -29,9 +29,47 @@ class _ECommerceState extends State<ECommerce> {
         ],
       ),
       body: Container(
+
         child: Center(
-          child: Text('Welcome')
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.all(20),
+                  child: Stack(
+                    children: <Widget>[
+                      Align(
+                        child: Text('Items', style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 26
+                          )
+                        ), 
+                        alignment: Alignment.topLeft,
+                      )
+                    ]
+                  )
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top:30, right: 20),
+                  child: Stack(
+                    children: <Widget>[
+                      Align(
+                        child: InkWell(child: Text('More Items', style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.purple
+                          )
+                        )), 
+                        alignment: Alignment.topRight,
+                      )
+                    ]
+                  )
+                ),
+              ]
+            )
+          )
         )
+
       )
     );
   }
