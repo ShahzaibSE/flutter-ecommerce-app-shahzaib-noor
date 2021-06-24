@@ -13,6 +13,7 @@ class ECommerce extends StatefulWidget {
 class _ECommerceState extends State<ECommerce> {
   Widget generateFeaturedAds(int index){
     return Container(
+            // width: MediaQuery.of(context).size.width,
             child: Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,6 +121,19 @@ class _ECommerceState extends State<ECommerce> {
     );
   }
   //
+  Widget generateAllAds(int index){
+    return Container(
+       child: Card(
+         child: Column(
+           children: <Widget>[
+             Container(
+               child: Image(image: AssetImage(Ads.allAdsDB[index].imageUrl), width: 300)
+             )
+           ]
+         )
+       )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,7 +154,7 @@ class _ECommerceState extends State<ECommerce> {
           )
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
 
         child: Center(
           child: Container(child: 
@@ -231,12 +245,92 @@ class _ECommerceState extends State<ECommerce> {
                                             'Other', '15 Items'),
                       ]
                     )
-                  )
+                  ),
+
+                  Container(
+                    child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.all(20),
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              child: Text('Popular Items', style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30
+                                )
+                              ), 
+                              alignment: Alignment.topLeft,
+                            )
+                          ]
+                        )
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 5, right: 20),
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              child: InkWell(child: Text('More Items', style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.purple
+                                      )
+                                    )), 
+                                    alignment: Alignment.topRight,
+                                  )
+                                ]
+                              )
+                            ),
+                          ]
+                        )
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left:20, right: 20),
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          // mainAxisSpacing: 10,
+                          // crossAxisSpacing: 10,
+                          children: [
+                            generateAllAds(0)
+                          ]
+                        )
+                      )
+                      
+                  
               ]
             )
           )
         )
-      )
+      ),
+      floatingActionButton: Container(
+        height: 70,
+        width: 70,
+        child: FloatingActionButton(
+          backgroundColor: Colors.purple,
+          child: Icon(Icons.search, size: 40),
+          onPressed: (){}
+        )
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: Container(height: 100.0, 
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                    Container(child: IconButton(icon: Icon(Icons.home, size: 40, color: Colors.grey), onPressed: () {})),
+                    Container(child: IconButton(icon: Icon(Icons.favorite, size: 40, color: Colors.grey), 
+                              onPressed: () {}), padding: const EdgeInsets.only(right: 20)),
+                    Container(child: IconButton(icon: Icon(Icons.add_shopping_cart, 
+                              size: 40, color: Colors.grey), onPressed: () {})
+                              ,padding: const EdgeInsets.only(left: 20)),
+                    Container(child: IconButton(icon: Icon(Icons.more_vert, size: 40, color: Colors.grey), onPressed: () {})),
+                  ],
+              ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
