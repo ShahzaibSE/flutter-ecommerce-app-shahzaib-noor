@@ -125,10 +125,48 @@ class _ECommerceState extends State<ECommerce> {
     return Container(
        child: Card(
          child: Column(
+           mainAxisSize: MainAxisSize.max,
+           crossAxisAlignment: CrossAxisAlignment.start,
            children: <Widget>[
-             Container(
-               child: Image(image: AssetImage(Ads.allAdsDB[index].imageUrl), width: 300)
-             )
+              Container(
+                child: Stack(
+                  children:[
+                      Align(child:Image(image: AssetImage(Ads.allAdsDB[index].imageUrl), width: 150, 
+                              height: 150),
+                              alignment: Alignment.center,)
+                    ]
+                  )
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 10,top: 10),
+                child: Text(Ads.allAdsDB[index].title, style: TextStyle(
+                  fontSize: 15, 
+                  fontWeight: FontWeight.bold
+              ))),
+              Expanded(
+                child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround, 
+                      children: [ 
+                        Row(
+                            children: [
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Container(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text('5.0 (23 Reviews)', style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold
+                                ))
+                              )
+                            ],
+                        ) 
+                    ]
+                  )
+              )
            ]
          )
        )
@@ -159,6 +197,7 @@ class _ECommerceState extends State<ECommerce> {
         child: Center(
           child: Container(child: 
           Column(
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
                 child: Row(
@@ -285,17 +324,14 @@ class _ECommerceState extends State<ECommerce> {
                         )
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left:20, right: 20),
-                        child: GridView.count(
-                          crossAxisCount: 2,
+                        child: GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          // mainAxisSpacing: 10,
-                          // crossAxisSpacing: 10,
-                          children: [
-                            generateAllAds(0)
-                          ]
-                        )
+                          itemCount: Ads.allAdsDB.length,
+                                    itemBuilder: (BuildContext context, int index){
+                                      return generateAllAds(index);
+                                    })
                       )
                       
                   
