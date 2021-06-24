@@ -72,6 +72,54 @@ class _ECommerceState extends State<ECommerce> {
           );
   }
   //
+  Widget generateCategoryList(Icon icon ,String categoryName, String numberOfItems) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      width: 250,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20)
+        ),
+        child: Container(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          children: <Widget>[
+            Container(
+              // padding: const EdgeInsets.only(bottom: 25),
+              child: icon
+            ),
+
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  //
+                  Container(
+                    padding: const EdgeInsets.only(left:20,right:10),
+                    child: Text(categoryName, style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold
+                      )
+                    )
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left:20,right:10),
+                    child: Text(numberOfItems, style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold
+                      )
+                    )
+                  )
+                ]
+              )
+            )
+          ]
+        )
+        )
+      )
+    );
+  }
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,6 +199,7 @@ class _ECommerceState extends State<ECommerce> {
                         ),
                       )
                   ),
+                  //
                   Stack(
                     children: [
                       Align(
@@ -163,7 +212,25 @@ class _ECommerceState extends State<ECommerce> {
                           ))
                         )
                       )
-                  ]
+                    ]
+                  ),
+                  //
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: <Widget>[
+                        generateCategoryList(Icon(Icons.local_drink, size: 30, color: Colors.purple), 
+                                            'Clothes', '5 Items'),
+                        generateCategoryList(Icon(Icons.bolt, size: 30, color: Colors.purple), 
+                                            'Electronics', '5 Items'),
+                        generateCategoryList(Icon(Icons.chair, size: 30, color: Colors.purple), 
+                                            'Households', '5 Items'),
+                        generateCategoryList(Icon(Icons.bolt, size: 30, color: Colors.purple), 
+                                            'Appliances', '5 Items'),
+                        generateCategoryList(Icon(Icons.double_arrow, size: 30, color: Colors.purple), 
+                                            'Other', '15 Items'),
+                      ]
+                    )
                   )
               ]
             )
