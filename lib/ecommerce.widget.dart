@@ -15,46 +15,56 @@ class _ECommerceState extends State<ECommerce> {
     return Container(
             child: Card(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    child: Image(image: AssetImage(Ads.FeaturedAdsDB[index].imageUrl), 
-                                width: Ads.FeaturedAdsDB[index].width, 
-                                height: Ads.FeaturedAdsDB[index].height)
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        child: Image(image: AssetImage(Ads.FeaturedAdsDB[index].imageUrl), 
+                                    width: MediaQuery.of(context).size.width, 
+                                    height: 250
+                        )
+                      ),
+                    ]
                   ),
-
                   Container(
-                    child: Text(Ads.FeaturedAdsDB[index].title, style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold
-                    ))
-                  ),
-
-                  Container(
+                    padding: const EdgeInsets.only(left:20,right:20),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Container(
-                          child: GridView.count(
-                            crossAxisCount: 5,
-                            children: [
-                              Icon(Icons.star),
-                              Icon(Icons.star),
-                              Icon(Icons.star),
-                              Icon(Icons.star),
-                              Icon(Icons.star),
-                            ],
-                          )
-                        ),
-                        Container(
-                          child: Text('5.0 (23 Reviews)', style: TextStyle(
-                            color: Colors.grey[400]
-                          )
-                          )
+                          child: Text(Ads.FeaturedAdsDB[index].title, style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold
+                          )),
                         )
                       ]
-                    ),
+                    )
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround, 
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.only(left:20, top: 10, bottom: 10, right: 20),
+                          child: Row(
+                            children: [
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Icon(Icons.star, color: Colors.yellow, size: 20),
+                              Container(
+                                padding: const EdgeInsets.only(left: 10, right: 10),
+                                child: Text('5.0 (23 Reviews)', style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold
+                                ))
+                              )
+                            ],
+                          ) 
+                        ),
+                    ]
                   )
                 ]
               )
@@ -131,13 +141,8 @@ class _ECommerceState extends State<ECommerce> {
                     // padding: const EdgeInsets.all(10),
                     child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                              minWidth: MediaQuery.of(context).size.width,
-                        ),
-                        child: Row(
+                        child:  Row(
                           children: <Widget>[
-                            const SizedBox(width: 100),
                             generateFeaturedAds(0),
                             generateFeaturedAds(1),
                             generateFeaturedAds(2),
@@ -147,9 +152,7 @@ class _ECommerceState extends State<ECommerce> {
                           ]
                         ),
                       )
-                    )
                   )
-
               ]
             )
           )
