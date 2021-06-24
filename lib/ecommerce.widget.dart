@@ -137,8 +137,6 @@ class _ECommerceState extends State<ECommerce> {
                   ),
 
                   Container(
-                    // margin: const EdgeInsets.all(20),
-                    // padding: const EdgeInsets.all(10),
                     child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child:  Row(
@@ -152,6 +150,20 @@ class _ECommerceState extends State<ECommerce> {
                           ]
                         ),
                       )
+                  ),
+                  Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: Text('More Categories', style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold
+                          ))
+                        )
+                      )
+                  ]
                   )
               ]
             )
